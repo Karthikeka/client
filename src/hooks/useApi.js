@@ -6,7 +6,7 @@ const [response, setResponse] = useState(null);
 const [error,setError]= useState("");
  const [isLoading, setIsLoading] = useState(false);
 
-const call = async(payload) =>{
+const call = async(payload,type = '') =>{
     setResponse(null);
     setError("")
    setIsLoading(true);

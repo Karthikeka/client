@@ -19,6 +19,7 @@ import { useState } from "react";
  const Header = styled(Box) ({
      display:'flex',
      justifyContent:'space-between',
+     padding:'10px 15px',
      background:'#f2f6fc',
      '& > p':{
         fontSize:14,
@@ -34,7 +35,7 @@ import { useState } from "react";
     '&> div':{
         fontSize:14,
         borderBottom:'1px solid #F5F5F5',
-        marginTop:'10px',
+        marginTop:10
        }
     }) 
     
@@ -55,14 +56,14 @@ const SendButton = styled(Box)({
     borderRadius:'18px',
     width:'100px'
  })
- const ComposeMail = ({open, setOpenDrawer }) => {
+ const ComposeMail = ({open, setopenDrawer }) => {
    const [data, setData] = useState({});
    const sentEmailService = useApi(API_URLS.saveSentEmails);
    const saveDraftService = useApi(API_URLS.saveDraftEmails);
 
    const config = {
-       Username: process.env.REACT_APP_USERNAME,
-       Password: process.env.REACT_APP_PASSWORD,
+       Username:"karthikeka123@yopmail.com",
+       Password: "9C55E1C248C76B3A6CA46C299A1D4E3FE5E2",
        Host: 'smtp.elasticemail.com',
        Port: 2525,
    }
@@ -77,20 +78,20 @@ const SendButton = styled(Box)({
        if (window.Email) {
            window.Email.send({
                ...config,
-               To : data.to,
+               To : "karthikeka94@gmail.com",
                From : "karthikeka94@gmail.com",
-               Subject : data.subject,
-               Body : data.body
+               Subject : "this is subject",
+               Body : " And this is the body",
            }).then(
                message => alert(message)
            );
        }
 
        const payload = {
-           to : data.to,
+           to : "karthikeka94@gmail.com",
            from : "karthikeka94@gmail.com",
-           subject : data.subject,
-           body : data.body,
+           subject : "this is  subject",
+           Body : "And this is body",
            date: new Date(),
            image: '',
            name: 'Code for Mail',
@@ -101,7 +102,7 @@ const SendButton = styled(Box)({
        sentEmailService.call(payload);
 
        if (!sentEmailService.error) {
-           setOpenDrawer(false);
+           setopenDrawer(false);
            setData({});
        } else {
 
@@ -113,7 +114,7 @@ const SendButton = styled(Box)({
 
        const payload = {
            to : data.to,
-           from : "karthikeka94@gmail.com",
+           from : 'karthikeka94@gmail.com',
            subject : data.subject,
            body : data.body,
            date: new Date(),
@@ -126,7 +127,7 @@ const SendButton = styled(Box)({
        saveDraftService.call(payload);
 
        if (!saveDraftService.error) {
-           setOpenDrawer(false);
+           setopenDrawer(false);
            setData({});
        } else {
 
@@ -161,7 +162,7 @@ placeholder="Subject"
                <TextField
                 multiline
                 rows ={20}
- sx={{'& .MuiOutlinedInput-notchedOutline':{border:'none'}}}
+ sx={{'& .MuiOutlinedInput-notchedOutline': {border:'none'}}}
           name ="body"
             onChange ={(e) => onValueChange(e)}
             value={data.body}
@@ -169,7 +170,7 @@ placeholder="Subject"
                 
                 <Footer> 
                  <SendButton onClick={(e)=>sendEmail (e)}>Send</SendButton>
-              <DeleteOutline onClick={() => setOpenDrawer(false)}/>
+              <DeleteOutline onClick={() => setopenDrawer(false)}/>
                </Footer>
              </Dialog>
      )

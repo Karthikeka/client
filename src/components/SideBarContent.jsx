@@ -34,12 +34,12 @@ const ComposeButton = styled(Button)`
 
 const SideBarContent = () => {
 
-    const [openDrawer, setOpenDrawer] = useState(false);
+    const [openDrawer, setopenDrawer] = useState(false);
 
     const { type } = useParams();
 
     const onComposeClick = () => {
-        setOpenDrawer(true);
+        setopenDrawer(true);
     }
 
     return (
@@ -59,7 +59,7 @@ const SideBarContent = () => {
                     ))
                 }
             </List>
-            <ComposeMail open={openDrawer} setOpenDrawer={setOpenDrawer} />
+            <ComposeMail open={openDrawer} setopenDrawer={setopenDrawer} />
         </Container>
     )
 }
